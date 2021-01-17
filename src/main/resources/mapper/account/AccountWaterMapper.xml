@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wind.account.dao.IAccountWaterDao">
+  <resultMap id="BaseResultMap" type="com.wind.account.domain.AccountWaterDO">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ACCOUNT_ID" jdbcType="BIGINT" property="accountId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="ATOM_ID" jdbcType="BIGINT" property="atomId" />
+    <result column="ATOM_TYPE" jdbcType="VARCHAR" property="atomType" />
+    <result column="PRE_BALANCE" jdbcType="BIGINT" property="preBalance" />
+    <result column="AFT_BALANCE" jdbcType="BIGINT" property="aftBalance" />
+    <result column="EFCT_BALANCE" jdbcType="BIGINT" property="efctBalance" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACCOUNT_ID, PRODUCT_ID, ATOM_ID, ATOM_TYPE, PRE_BALANCE, AFT_BALANCE, EFCT_BALANCE, 
+    REMARK, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_water
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_account_water
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wind.account.domain.AccountWaterDO">
+    insert into t_account_water (ID, ACCOUNT_ID, PRODUCT_ID, 
+      ATOM_ID, ATOM_TYPE, PRE_BALANCE, 
+      AFT_BALANCE, EFCT_BALANCE, REMARK, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{atomId,jdbcType=BIGINT}, #{atomType,jdbcType=VARCHAR}, #{preBalance,jdbcType=BIGINT}, 
+      #{aftBalance,jdbcType=BIGINT}, #{efctBalance,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wind.account.domain.AccountWaterDO">
+    insert into t_account_water
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="accountId != null">
+        ACCOUNT_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="atomId != null">
+        ATOM_ID,
+      </if>
+      <if test="atomType != null">
+        ATOM_TYPE,
+      </if>
+      <if test="preBalance != null">
+        PRE_BALANCE,
+      </if>
+      <if test="aftBalance != null">
+        AFT_BALANCE,
+      </if>
+      <if test="efctBalance != null">
+        EFCT_BALANCE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="atomId != null">
+        #{atomId,jdbcType=BIGINT},
+      </if>
+      <if test="atomType != null">
+        #{atomType,jdbcType=VARCHAR},
+      </if>
+      <if test="preBalance != null">
+        #{preBalance,jdbcType=BIGINT},
+      </if>
+      <if test="aftBalance != null">
+        #{aftBalance,jdbcType=BIGINT},
+      </if>
+      <if test="efctBalance != null">
+        #{efctBalance,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wind.account.domain.AccountWaterDO">
+    update t_account_water
+    <set>
+      <if test="accountId != null">
+        ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="atomId != null">
+        ATOM_ID = #{atomId,jdbcType=BIGINT},
+      </if>
+      <if test="atomType != null">
+        ATOM_TYPE = #{atomType,jdbcType=VARCHAR},
+      </if>
+      <if test="preBalance != null">
+        PRE_BALANCE = #{preBalance,jdbcType=BIGINT},
+      </if>
+      <if test="aftBalance != null">
+        AFT_BALANCE = #{aftBalance,jdbcType=BIGINT},
+      </if>
+      <if test="efctBalance != null">
+        EFCT_BALANCE = #{efctBalance,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wind.account.domain.AccountWaterDO">
+    update t_account_water
+    set ACCOUNT_ID = #{accountId,jdbcType=BIGINT},
+      PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      ATOM_ID = #{atomId,jdbcType=BIGINT},
+      ATOM_TYPE = #{atomType,jdbcType=VARCHAR},
+      PRE_BALANCE = #{preBalance,jdbcType=BIGINT},
+      AFT_BALANCE = #{aftBalance,jdbcType=BIGINT},
+      EFCT_BALANCE = #{efctBalance,jdbcType=BIGINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
